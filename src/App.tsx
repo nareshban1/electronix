@@ -1,7 +1,17 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import CheckoutPage from "./routes/CheckoutPage/CheckoutPage";
+import ProductPage from "./routes/ProductPage/ProductPage";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={ProductPage} />
+        <Route path="/checkout" element={CheckoutPage} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
