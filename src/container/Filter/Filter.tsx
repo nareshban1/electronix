@@ -11,6 +11,7 @@ const Filter = () => {
           console.log(`min = ${min}, max = ${max}`)
         }
       />
+      Date Categories
     </div>
   );
 };
