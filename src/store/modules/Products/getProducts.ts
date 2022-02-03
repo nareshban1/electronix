@@ -1,12 +1,11 @@
 import { Dispatch } from "redux";
-import initialState from "../../helpers/default-state";
+import initialState from "../../helpers/defaultState";
 import { apiList, DefaultAction } from "../../actions/";
-import { defaultReducer } from "../../helpers/default-reducer";
-import axios from "axios";
-import defaultDispatchTypes from "../../helpers/default-dispatch-types";
+import { defaultReducer } from "../../helpers/defaultReducer";
+import defaultAction from "../../helpers/defaultAction";
 
 const products = initialState;
-let apiDetails = apiList.products.getProducts;
+const apiDetails = apiList.products.getProducts;
 
 const getProductsReducer = (iniState = products, action: DefaultAction) => {
   const state = { ...iniState };
@@ -18,21 +17,7 @@ const getProductsReducer = (iniState = products, action: DefaultAction) => {
 export default getProductsReducer;
 
 export const fetchProducts = () => {
-  return (dispatch: Dispatch) => {
-    let dispatchTypes = defaultDispatchTypes(apiDetails.actionName);
-    dispatch({ type: dispatchTypes.loadingDispatch, payload: null });
-    axios
-      .get(
-        "https://electronic-ecommerce.herokuapp.com/api/v1/" +
-          apiDetails.controllerName
-      )
-      .then((response) => {
-        const data = response.data;
-        dispatch({ type: dispatchTypes.successDispatch, payload: data });
-      })
-      .catch((error) => {
-        const errorData = error;
-        dispatch({ type: dispatchTypes.errorDispatch, payload: errorData });
-      });
+  return async (dispatch: Dispatch) => {
+    return await defaultAction(apiDetails, dispatch, { requestData: null });
   };
 };

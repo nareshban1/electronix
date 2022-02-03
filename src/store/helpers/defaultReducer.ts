@@ -7,7 +7,7 @@ and as you can already guess it is very reusable in any other projects too */
  succes and failure so that you can dynamically dispatch any actions and dont have to rewrite actionNames */
 
 import { DefaultAction } from "../actions";
-import { DefaultState } from "./default-state";
+import { DefaultState } from "./defaultState";
 
 export const defaultReducer = (
   state: DefaultState,

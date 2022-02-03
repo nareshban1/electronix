@@ -9,6 +9,26 @@ export type DefaultAction = {
                     and the type is any because we dont know what response we get from the api.*/;
 };
 
+export enum RequestMethod {
+  GET = "GET",
+  DELETE = "DELETE",
+  HEAD = "HEAD",
+  OPTIONS = "OPTIONS",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  PURGE = "PURGE",
+  LINK = "LINK",
+  UNLINK = "UNLINK",
+}
+
+export interface apiDetailType {
+  actionName: string;
+  controllerName: string;
+  requestMethod?: RequestMethod;
+  requestBodyType?: string;
+}
+
 /*Creating a list of endpoints(controllername),
 actionNames to dispach respective reducers and api requestMethod.*/
 const apiDetails = {
@@ -16,7 +36,7 @@ const apiDetails = {
     getProducts: {
       controllerName: "/product",
       actionName: "GET_PRODUCTS",
-      requestMethod: "GET",
+      requestMethod: RequestMethod.GET,
     },
   },
 };

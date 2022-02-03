@@ -5,12 +5,12 @@ import ProductPage from "./routes/ProductPage/ProductPage";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Routes>
-        <Route path="/" element={ProductPage} />
-        <Route path="/checkout" element={CheckoutPage} />
+        <Route path="/" element={<ProductPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
