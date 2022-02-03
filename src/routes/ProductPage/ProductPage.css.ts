@@ -8,12 +8,10 @@ export const ProductPageContainer = styled.section`
 
 export const ProductPageHeaderContainer = styled.div`
   height: 50px;
-  position: fixed;
   display: flex;
   align-items: center;
   background-color: white;
-  top: 0;
-  width: min(1300px, 90%);
+  width: 100%;
 `;
 
 export const ProductPageHeader = styled.h1``;

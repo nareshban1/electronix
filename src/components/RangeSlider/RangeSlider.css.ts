@@ -22,7 +22,7 @@ export const SliderRange = styled.div`
   position: absolute;
   border-radius: 3px;
   height: 5px;
-  background-color: orange;
+  background-color: #f95700ff;
   z-index: 2;
 `;
 export const SliderLeftValue = styled.div`
