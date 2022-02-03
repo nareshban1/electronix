@@ -18,5 +18,5 @@ export const ProductPageHeader = styled.h1``;
 
 export const ProductFilterContainer = styled.div`
   display: flex;
-  margin-top: 50px;
+  margin-top: 1rem;
 `;
