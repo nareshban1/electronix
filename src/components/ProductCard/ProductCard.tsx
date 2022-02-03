@@ -3,7 +3,9 @@ import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 import formatDate from "../../utils/utilsFunctions/dateFormatter";
 import {
   CardContainer,
+  CartLogo,
   CreateDate,
+  HoverState,
   ProductDetails,
   ProductImage,
   ProductName,
@@ -35,6 +37,9 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
         <Stock>{productData.stock}</Stock>
         <CreateDate>{createDate}</CreateDate>
       </ProductDetails>
+      <HoverState>
+        <CartLogo />
+      </HoverState>
     </CardContainer>
   );
 };
