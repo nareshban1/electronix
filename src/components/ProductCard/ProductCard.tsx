@@ -4,6 +4,7 @@ import formatDate from "../../utils/utilsFunctions/dateFormatter";
 import {
   CardContainer,
   CreateDate,
+  ProductDetails,
   ProductImage,
   ProductName,
   ProductPrice,
@@ -28,10 +29,12 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
       <ProductImage
         src={`https://electronic-ecommerce.herokuapp.com/` + productData.image}
       />
-      <ProductName>{productData.name}</ProductName>
-      <ProductPrice>{price}</ProductPrice>
-      <Stock>{productData.stock}</Stock>
-      <CreateDate>{createDate}</CreateDate>
+      <ProductDetails>
+        <ProductName>{productData.name}</ProductName>
+        <ProductPrice>{price}</ProductPrice>
+        <Stock>{productData.stock}</Stock>
+        <CreateDate>{createDate}</CreateDate>
+      </ProductDetails>
     </CardContainer>
   );
 };

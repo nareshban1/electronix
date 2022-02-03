@@ -1,9 +1,11 @@
 import React from "react";
 import RangeSlider from "../../components/RangeSlider/RangeSlider";
+import { FilterContainer } from "./Filter.css";
 
 const Filter = () => {
   return (
-    <div>
+    <FilterContainer>
+      Price Range
       <RangeSlider
         min={0}
         max={1000}
@@ -12,7 +14,7 @@ const Filter = () => {
         }
       />
       Date Categories
-    </div>
+    </FilterContainer>
   );
 };
 

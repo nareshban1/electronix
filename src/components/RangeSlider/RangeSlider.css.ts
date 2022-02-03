@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const RangeSliderContainer = styled.div`
+  width: 200px;
+  height: 200px;
+`;
 export const Slider = styled.div`
   position: relative;
   width: 200px;
@@ -18,19 +22,19 @@ export const SliderRange = styled.div`
   position: absolute;
   border-radius: 3px;
   height: 5px;
-  background-color: #9fe5e1;
+  background-color: orange;
   z-index: 2;
 `;
 export const SliderLeftValue = styled.div`
   position: absolute;
-  color: #dee2e6;
+  color: black;
   font-size: 12px;
   margin-top: 20px;
   left: 6px;
 `;
 export const SliderRightValue = styled.div`
   position: absolute;
-  color: #dee2e6;
+  color: black;
   font-size: 12px;
   margin-top: 20px;
   right: -4px;

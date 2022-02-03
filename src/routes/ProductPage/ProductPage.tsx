@@ -6,7 +6,12 @@ import Filter from "../../container/Filter/Filter";
 import ProductGrid from "../../container/ProductGrid/ProductGrid";
 import { RootState } from "../../store";
 import { fetchProducts } from "../../store/modules/Products/getProducts";
-import { ProductPageContainer, ProductPageHeader } from "./ProductPage.css";
+import {
+  ProductFilterContainer,
+  ProductPageContainer,
+  ProductPageHeader,
+  ProductPageHeaderContainer,
+} from "./ProductPage.css";
 
 const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
@@ -24,9 +29,13 @@ const ProductPage = (props: PropsFromRedux) => {
   return (
     <ProductPageContainer>
       <Container>
-        <ProductPageHeader>Our Products</ProductPageHeader>
-        <Filter />
-        <ProductGrid products={productsData.data?.product} />
+        <ProductPageHeaderContainer>
+          <ProductPageHeader>Our Products</ProductPageHeader>
+        </ProductPageHeaderContainer>
+        <ProductFilterContainer>
+          <Filter />
+          <ProductGrid products={productsData.data?.product} />
+        </ProductFilterContainer>
       </Container>
     </ProductPageContainer>
   );

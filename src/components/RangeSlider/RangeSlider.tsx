@@ -12,6 +12,7 @@ import {
   SliderLeftValue,
   SliderRightValue,
   Thumb,
+  RangeSliderContainer,
 } from "./RangeSlider.css";
 
 interface RangeSliderProps {
@@ -63,7 +64,7 @@ const RangeSlider = ({ min, max, onChange }: RangeSliderProps) => {
   }, [minVal, maxVal, onChange]);
 
   return (
-    <>
+    <RangeSliderContainer>
       <Thumb
         type="range"
         min={min}
@@ -95,7 +96,7 @@ const RangeSlider = ({ min, max, onChange }: RangeSliderProps) => {
         <SliderLeftValue>{minVal}</SliderLeftValue>
         <SliderRightValue>{maxVal}</SliderRightValue>
       </Slider>
-    </>
+    </RangeSliderContainer>
   );
 };
 
