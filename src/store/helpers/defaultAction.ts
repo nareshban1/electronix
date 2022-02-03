@@ -13,13 +13,15 @@ interface CustomResponse<TData = any> extends AxiosResponse {
   message: string;
   data: TData | null;
   status: number;
-  noconnection: boolean;
+  noconnection: boolean; //for if there is no connection issue , I have not implemented this.
   config: AxiosRequestConfig;
-  isAxiosError: boolean;
+  isAxiosError: boolean; //for if there is no axios issue , I have not implemented this.
 }
 
 export type APIResponseDetail<TData = any> = Promise<CustomResponse<TData>>;
 
+/* Generates Action and dispatches those action according to the response received from the api call  */
+/* asyncrynous function */
 const defaultAction = async (
   apiDetails: apiDetailType,
   dispatch: Dispatch,

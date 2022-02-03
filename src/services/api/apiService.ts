@@ -1,3 +1,6 @@
+/* This function uses axios to interact with the api. It is reusable with different kinds of method and request data
+and it is also upgradable to include request params and many other features that axios proovides */
+
 import Axios, {
   AxiosResponse,
   AxiosError,
@@ -17,6 +20,8 @@ const apiRequest = (
   };
   const controller = new AbortController(); // to abort/cancel previous request in queue
   let signal = controller.signal;
+
+  /*Creating request parameters required to interact with the api please check axios documentation fo the request config parameters  */
   let axiosRequestParams: AxiosRequestConfig = {
     url: apiDetails.controllerName,
     method: requestMethod,
@@ -27,6 +32,7 @@ const apiRequest = (
     headers: headers,
   };
 
+  /* Calling the api using the request parameters generated above */
   return Axios.request(axiosRequestParams)
     .then((response: AxiosResponse) => response)
     .catch((error: AxiosError) => {
