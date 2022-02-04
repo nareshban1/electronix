@@ -34,7 +34,7 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
       <ProductDetails>
         <ProductName>{productData.name}</ProductName>
         <ProductPrice>{price}</ProductPrice>
-        <Stock>{productData.stock}</Stock>
+        <Stock>{productData.stock} in Stock</Stock>
         <CreateDate>{createDate}</CreateDate>
         <CartButton>
           Add to <CartLogo />
