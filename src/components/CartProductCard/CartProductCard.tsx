@@ -1,15 +1,21 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../../store/modules/Cart/cartActions";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "../../store/modules/Cart/cartActions";
 import {
   CartProductCardContainer,
   CartProductDetailContainer,
   CartProductImage,
   CartProductName,
   CartProductPrice,
-  CartProductStock,
+  CartProductQuantity,
   DeleteProduct,
   DetailContainer,
+  Minus,
+  Plus,
 } from "./CartProductCart.css";
 
 type ProductData = {
@@ -29,6 +35,12 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
   const deleteItem = (productId: number) => {
     dispatch(removeFromCart(productId));
   };
+  const increase = (productId: number) => {
+    dispatch(increaseQuantity(productId));
+  };
+  const decrease = (productId: number) => {
+    dispatch(decreaseQuantity(productId));
+  };
 
   return (
     <CartProductCardContainer>
@@ -39,7 +51,11 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
         <CartProductDetailContainer>
           <CartProductName>{product.name}</CartProductName>
           <CartProductPrice>{product.price}</CartProductPrice>
-          <CartProductStock>{product.quantity}</CartProductStock>
+          <CartProductQuantity>
+            <Plus onClick={() => increase(product.id)} />
+            {product.quantity}
+            <Minus onClick={() => decrease(product.id)} />
+          </CartProductQuantity>
         </CartProductDetailContainer>
       </DetailContainer>
       <DeleteProduct onClick={() => deleteItem(product.id)} />
