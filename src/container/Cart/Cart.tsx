@@ -1,5 +1,5 @@
 import React from "react";
-import { CartContainer, CartHeader, CloseButton } from "./Cart.css";
+import { CartContainer, CartHeader, CartPage, CloseButton } from "./Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
@@ -17,12 +17,14 @@ const Cart = () => {
   return (
     <>
       {viewCart && (
-        <CartContainer>
-          <CartHeader>
-            <CloseButton onClick={closeCart} />
-            Your Cart
-          </CartHeader>
-        </CartContainer>
+        <CartPage>
+          <CartContainer>
+            <CartHeader>
+              <CloseButton onClick={closeCart} />
+              Your Cart
+            </CartHeader>
+          </CartContainer>
+        </CartPage>
       )}
     </>
   );
