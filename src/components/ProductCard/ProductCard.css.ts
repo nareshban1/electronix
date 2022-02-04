@@ -8,7 +8,8 @@ export const CartLogo = styled(FaShoppingCart)`
   transition: 300ms ease-in-out;
 `;
 
-export const CartButton = styled.div`
+export const CartButton = styled.button`
+  border: none;
   height: 100%;
   width: max-content;
   background-color: #f95700ff;

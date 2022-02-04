@@ -48,7 +48,10 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
         <ProductPrice>{price}</ProductPrice>
         <Stock>{productData.stock} in Stock</Stock>
         <CreateDate>{createDate}</CreateDate>
-        <CartButton onClick={() => addProduct(productData)}>
+        <CartButton
+          onClick={() => addProduct(productData)}
+          disabled={productData.stock === 0}
+        >
           Add to <CartLogo />
         </CartButton>
       </ProductDetails>
