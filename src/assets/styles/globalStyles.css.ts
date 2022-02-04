@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
         text-decoration: none;
         box-sizing: border-box;
         font-family: 'Poppins','Open-Sans';
+        list-style: none;
     }
 
 `;

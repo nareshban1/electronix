@@ -26,3 +26,6 @@ export const CartHeader = styled.div`
 `;
 
 export const CloseButton = styled(ImCross)``;
+
+export const CartItems = styled.ul``;
+export const CartItem = styled.li``;
