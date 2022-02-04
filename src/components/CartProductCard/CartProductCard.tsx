@@ -35,11 +35,18 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
   const deleteItem = (productId: number) => {
     dispatch(removeFromCart(productId));
   };
-  const increase = (productId: number) => {
-    dispatch(increaseQuantity(productId));
+
+  /** Issues with render a step late than click action, Needs fixing later **/
+  const increase = (productId: number, quantity: number, stock: number) => {
+    if (quantity < stock) {
+      dispatch(increaseQuantity(productId));
+    }
   };
-  const decrease = (productId: number) => {
-    dispatch(decreaseQuantity(productId));
+  const decrease = (productId: number, quantity: number) => {
+    console.log(quantity);
+    if (quantity > 1) {
+      dispatch(decreaseQuantity(productId));
+    }
   };
 
   return (
@@ -50,11 +57,17 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
         />
         <CartProductDetailContainer>
           <CartProductName>{product.name}</CartProductName>
-          <CartProductPrice>{product.price}</CartProductPrice>
+          <CartProductPrice>
+            {Number(product.price.substring(1)) * product.quantity}
+          </CartProductPrice>
           <CartProductQuantity>
-            <Plus onClick={() => increase(product.id)} />
+            <Plus
+              onClick={() =>
+                increase(product.id, product.quantity, product.stock)
+              }
+            />
             {product.quantity}
-            <Minus onClick={() => decrease(product.id)} />
+            <Minus onClick={() => decrease(product.id, product.quantity)} />
           </CartProductQuantity>
         </CartProductDetailContainer>
       </DetailContainer>
