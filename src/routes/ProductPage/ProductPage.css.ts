@@ -5,6 +5,13 @@ export const ProductPageContainer = styled.section`
   width: 100%;
 `;
 
+export const LoadingContainer = styled.section`
+  background-color: transparent;
+  height: 90vh;
+  display: grid;
+  place-items: center;
+`;
+
 export const ProductPageHeaderContainer = styled.div`
   height: 50px;
   display: flex;

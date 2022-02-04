@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const RangeSliderContainer = styled.div`
   width: 200px;
-  height: 200px;
+  height: 70px;
+
+  padding: 1rem 0;
 `;
 export const Slider = styled.div`
   position: relative;
   width: 200px;
-  height: 200px;
 `;
 
 export const SliderTrack = styled.div`
@@ -28,14 +29,14 @@ export const SliderRange = styled.div`
 export const SliderLeftValue = styled.div`
   position: absolute;
   color: black;
-  font-size: 12px;
+
   margin-top: 20px;
   left: 6px;
 `;
 export const SliderRightValue = styled.div`
   position: absolute;
   color: black;
-  font-size: 12px;
+
   margin-top: 20px;
   right: -4px;
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Container } from "../../assets/styles/commonStyles.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
@@ -8,6 +8,7 @@ import ProductGrid from "../../container/ProductGrid/ProductGrid";
 import { RootState } from "../../store";
 import { fetchProducts } from "../../store/modules/Products/getProducts";
 import {
+  LoadingContainer,
   ProductFilterContainer,
   ProductPageContainer,
   ProductPageHeader,
@@ -16,17 +17,33 @@ import {
 
 const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
   if (productsData.loading) {
-    return <LoadingSpinner />;
+    return (
+      <ProductPageContainer>
+        <Container>
+          <LoadingContainer>
+            <LoadingSpinner />
+          </LoadingContainer>
+        </Container>
+      </ProductPageContainer>
+    );
   } else if (productsData.error) {
-    return <LoadingSpinner />;
+    return (
+      <ProductPageContainer>
+        <Container>
+          <LoadingContainer>
+            <LoadingSpinner />
+          </LoadingContainer>
+        </Container>
+      </ProductPageContainer>
+    );
   }
-
   return (
     <ProductPageContainer>
       <Container>
@@ -34,7 +51,10 @@ const ProductPage = (props: PropsFromRedux) => {
           <ProductPageHeader>Our Products</ProductPageHeader>
         </ProductPageHeaderContainer>
         <ProductFilterContainer>
-          <Filter />
+          <Filter
+            setSelectedCategory={setSelectedCategory}
+            selectedCategory={selectedCategory}
+          />
           <ProductGrid products={productsData.data?.product} />
         </ProductFilterContainer>
       </Container>
