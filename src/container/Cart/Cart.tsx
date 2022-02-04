@@ -2,7 +2,6 @@ import React from "react";
 import {
   CartContainer,
   CartHeader,
-  CartItem,
   CartItems,
   CartPage,
   CloseButton,
@@ -11,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import CartProductCard from "../../components/CartProductCard/CartProductCard";
 
 const Cart = () => {
   const viewCart = useSelector((state: RootState) => state.toggleCart.viewCart);
@@ -33,7 +33,7 @@ const Cart = () => {
             </CartHeader>
             <CartItems>
               {cart.map((product) => (
-                <CartItem key={product.id}>{product.name}</CartItem>
+                <CartProductCard key={product.id} product={product} />
               ))}
             </CartItems>
           </CartContainer>

@@ -16,7 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { addToCart } from "../../store/modules/Cart/cartActions";
 import { showCart } from "../../store/modules/ToggleCart/toggleActions";
-type ProductData = {
+export type ProductData = {
   id: number;
   name: string;
   price: string;
@@ -34,7 +34,7 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
 
   const addProduct = (product: ProductData) => {
     if (cart.filter((object) => object.id === product.id).length === 0) {
-      dispatch(addToCart(product));
+      dispatch(addToCart({ ...product, quantity: 1 }));
     }
     dispatch(showCart());
   };

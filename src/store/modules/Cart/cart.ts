@@ -4,13 +4,14 @@ import {
   REMOVE_FROM_CART,
 } from "../../actions/cartActions/cartTypes";
 
-type CartState = {
+export type CartState = {
   id: number;
   name: string;
   price: string;
   image: string;
   stock: number;
   createDate: string;
+  quantity: number;
   category: string[];
 }[];
 
