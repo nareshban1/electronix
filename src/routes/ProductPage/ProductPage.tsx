@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Container } from "../../assets/styles/commonStyles.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { ProductData } from "../../components/ProductCard/ProductCard";
 import Cart from "../../container/Cart/Cart";
 import Filter from "../../container/Filter/Filter";
 import ProductGrid from "../../container/ProductGrid/ProductGrid";
@@ -18,10 +19,28 @@ import {
 const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    if (selectedCategory !== "") {
+      let filteredData = productsData.data?.product.filter(
+        (product: ProductData) =>
+          product.category.indexOf(selectedCategory) > -1
+      );
+
+      setProducts(filteredData);
+    } else {
+      setProducts(productsData.data?.product);
+    }
+  }, [selectedCategory, productsData]);
 
   useEffect(() => {
     getProducts();
   }, [getProducts]);
+
+  useEffect(() => {
+    setProducts(productsData.data?.product);
+  }, [productsData]);
 
   if (productsData.loading) {
     return (
@@ -55,7 +74,7 @@ const ProductPage = (props: PropsFromRedux) => {
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
           />
-          <ProductGrid products={productsData.data?.product} />
+          <ProductGrid products={products} />
         </ProductFilterContainer>
       </Container>
       <Cart />

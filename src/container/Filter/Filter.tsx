@@ -41,6 +41,7 @@ const Filter = ({
         <SubCategoriesContainer>
           {categories?.map((category, index) => (
             <SubCategories
+              key={category}
               selected={selectedCategory === category}
               checkSelected={selectedCategory === ""}
               onClick={() => setSelectedCategory(category)}
