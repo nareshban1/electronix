@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../store/modules/Cart/cartActions";
 import {
   CartProductCardContainer,
   CartProductDetailContainer,
@@ -22,6 +24,12 @@ type ProductData = {
 };
 
 const CartProductCard = ({ product }: { product: ProductData }) => {
+  const dispatch = useDispatch();
+
+  const deleteItem = (productId: number) => {
+    dispatch(removeFromCart(productId));
+  };
+
   return (
     <CartProductCardContainer>
       <DetailContainer>
@@ -34,7 +42,7 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
           <CartProductStock>{product.quantity}</CartProductStock>
         </CartProductDetailContainer>
       </DetailContainer>
-      <DeleteProduct />
+      <DeleteProduct onClick={() => deleteItem(product.id)} />
     </CartProductCardContainer>
   );
 };

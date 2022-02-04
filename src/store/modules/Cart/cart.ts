@@ -22,7 +22,7 @@ const cartReducer = (state = initialState, action: DefaultAction) => {
     case ADD_TO_CART:
       return [...state, action.payload];
     case REMOVE_FROM_CART:
-      let removed = state.filter((product) => (product.id = action.payload));
+      let removed = state.filter((product) => product.id !== action.payload);
       return [...removed];
     default:
       return state;
