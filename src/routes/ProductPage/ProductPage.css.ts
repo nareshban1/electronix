@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const ProductPageContainer = styled.section`
   background-color: transparent;
-  position: relative;
   width: 100%;
 `;
 

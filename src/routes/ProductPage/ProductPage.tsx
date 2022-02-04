@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Container } from "../../assets/styles/commonStyles.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Cart from "../../container/Cart/Cart";
 import Filter from "../../container/Filter/Filter";
 import ProductGrid from "../../container/ProductGrid/ProductGrid";
 import { RootState } from "../../store";
@@ -37,6 +38,7 @@ const ProductPage = (props: PropsFromRedux) => {
           <ProductGrid products={productsData.data?.product} />
         </ProductFilterContainer>
       </Container>
+      <Cart />
     </ProductPageContainer>
   );
 };
