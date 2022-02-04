@@ -12,7 +12,10 @@ import {
   ProductPrice,
   Stock,
 } from "./ProductCard.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import { addToCart } from "../../store/modules/Cart/cartActions";
+import { showCart } from "../../store/modules/ToggleCart/toggleActions";
 type ProductData = {
   id: number;
   name: string;
@@ -24,8 +27,17 @@ type ProductData = {
 };
 
 const ProductCard = ({ productData }: { productData: ProductData }) => {
+  const cart = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
   var createDate = formatDate(productData.createDate);
   var price = formatCurrency(productData.price);
+
+  const addProduct = (product: ProductData) => {
+    if (cart.filter((object) => object.id === product.id).length === 0) {
+      dispatch(addToCart(product));
+    }
+    dispatch(showCart());
+  };
   return (
     <CardContainer>
       <ProductImage
@@ -36,7 +48,7 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
         <ProductPrice>{price}</ProductPrice>
         <Stock>{productData.stock} in Stock</Stock>
         <CreateDate>{createDate}</CreateDate>
-        <CartButton>
+        <CartButton onClick={() => addProduct(productData)}>
           Add to <CartLogo />
         </CartButton>
       </ProductDetails>

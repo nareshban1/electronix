@@ -6,13 +6,13 @@ const Filter = () => {
   return (
     <FilterContainer>
       Price Range
-      <RangeSlider
+      {/* <RangeSlider
         min={0}
         max={1000}
         onChange={({ min, max }: { min: number; max: number }) =>
           console.log(`min = ${min}, max = ${max}`)
         }
-      />
+      /> */}
       Date Categories
     </FilterContainer>
   );
