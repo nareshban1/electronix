@@ -25,4 +25,8 @@ export const ProductPageHeader = styled.h1``;
 export const ProductFilterContainer = styled.div`
   display: flex;
   margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;

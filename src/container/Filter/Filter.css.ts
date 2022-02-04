@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export const FilterContainer = styled.div`
-  height: 500px;
   width: 250px;
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1rem auto;
+    margin-bottom: 50px;
+  }
 `;
 
 export const FilterHeader = styled.p`
