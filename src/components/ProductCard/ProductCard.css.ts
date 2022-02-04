@@ -3,23 +3,26 @@ import { FaShoppingCart } from "react-icons/fa";
 
 export const CartLogo = styled(FaShoppingCart)`
   color: white;
-  height: 50px;
-  width: 50px;
+  height: 20px;
+  width: 20px;
   transition: 300ms ease-in-out;
-
-  &:hover {
-    transform: scale(1.2);
-  }
 `;
 
-export const HoverState = styled.div`
-  display: none;
-  position: absolute;
+export const CartButton = styled.div`
   height: 100%;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  background-color: #f9570090;
+  width: max-content;
+  background-color: #f95700ff;
+  padding: 5px 10px;
+  display: flex;
+  color: white;
+  align-items: center;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -28,14 +31,6 @@ export const CardContainer = styled.div`
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-
-  &:hover {
-    cursor: pointer;
-    ${HoverState} {
-      display: grid;
-      place-items: center;
-    }
-  }
 `;
 
 export const ProductDetails = styled.div`

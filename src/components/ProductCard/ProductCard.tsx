@@ -5,7 +5,7 @@ import {
   CardContainer,
   CartLogo,
   CreateDate,
-  HoverState,
+  CartButton,
   ProductDetails,
   ProductImage,
   ProductName,
@@ -36,10 +36,10 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
         <ProductPrice>{price}</ProductPrice>
         <Stock>{productData.stock}</Stock>
         <CreateDate>{createDate}</CreateDate>
+        <CartButton>
+          Add to <CartLogo />
+        </CartButton>
       </ProductDetails>
-      <HoverState>
-        <CartLogo />
-      </HoverState>
     </CardContainer>
   );
 };
