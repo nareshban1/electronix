@@ -1,5 +1,5 @@
-export default function formatCurrency(price: string) {
-  const priceVal: number = Number(price.substring(1));
+export default function formatCurrency(price: string | number) {
+  const priceVal: number = Number(price);
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "NPR",

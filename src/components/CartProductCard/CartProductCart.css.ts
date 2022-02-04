@@ -8,6 +8,7 @@ export const CartProductCardContainer = styled.li`
   padding: 10px;
   background-color: #f9570030;
   border-radius: 5px;
+  height: 100px;
 `;
 
 export const DetailContainer = styled.div`

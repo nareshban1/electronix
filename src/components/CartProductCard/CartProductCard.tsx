@@ -5,6 +5,7 @@ import {
   increaseQuantity,
   removeFromCart,
 } from "../../store/modules/Cart/cartActions";
+import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 import {
   CartProductCardContainer,
   CartProductDetailContainer,
@@ -58,7 +59,9 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
         <CartProductDetailContainer>
           <CartProductName>{product.name}</CartProductName>
           <CartProductPrice>
-            {Number(product.price.substring(1)) * product.quantity}
+            {formatCurrency(
+              Number(product.price.substring(1)) * product.quantity
+            )}
           </CartProductPrice>
           <CartProductQuantity>
             <Plus

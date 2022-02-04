@@ -23,9 +23,11 @@ const cartReducer = (state = initialState, action: DefaultAction) => {
   switch (action.type) {
     case ADD_TO_CART:
       return [...state, action.payload];
+
     case REMOVE_FROM_CART:
       let removed = state.filter((product) => product.id !== action.payload);
       return [...removed];
+
     case INCREASE_QUANTITY:
       let indexInc = state.findIndex((obj) => obj.id === action.payload);
       let productToInc = [...state];
@@ -33,6 +35,7 @@ const cartReducer = (state = initialState, action: DefaultAction) => {
       incItem = { ...incItem, quantity: incItem.quantity + 1 };
       productToInc[indexInc] = incItem;
       return [...productToInc];
+
     case DECREASE_QUANTITY:
       let indexDec = state.findIndex((obj) => obj.id === action.payload);
       let productToDec = [...state];

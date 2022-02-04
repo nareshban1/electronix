@@ -24,6 +24,15 @@ export const CartButton = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+
+  &:disabled {
+    color: grey;
+    background-color: #f9570050;
+
+    &:hover {
+      transform: none;
+    }
+  }
 `;
 
 export const CardContainer = styled.div`

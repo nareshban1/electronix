@@ -30,7 +30,7 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   var createDate = formatDate(productData.createDate);
-  var price = formatCurrency(productData.price);
+  var price = formatCurrency(productData.price.substring(1));
 
   const addProduct = (product: ProductData) => {
     if (cart.filter((object) => object.id === product.id).length === 0) {
