@@ -14,6 +14,7 @@ import { RootState } from "../../store";
 import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
 import CartProductCard from "../../components/CartProductCard/CartProductCard";
 import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const viewCart = useSelector((state: RootState) => state.toggleCart.viewCart);
@@ -48,9 +49,11 @@ const Cart = () => {
             </CartItems>
             <CartFooter>
               <TotalPrice> Total Amount: &nbsp; {totalAmount}</TotalPrice>
-              <CheckoutButton disabled={cart.length === 0}>
-                Checkout
-              </CheckoutButton>
+              <Link to={"/checkout"}>
+                <CheckoutButton disabled={cart.length === 0}>
+                  Checkout
+                </CheckoutButton>
+              </Link>
             </CartFooter>
           </CartContainer>
         </CartPage>
