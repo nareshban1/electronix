@@ -45,14 +45,6 @@ const ProductPage = (props: PropsFromRedux) => {
     getProducts();
   }, [getProducts]);
 
-  // useEffect(() => {
-  //   if (productsData.data?.product) {
-  //     dispatch(setProduct(productsData.data?.product));
-  //   }
-  // }, [productsData.data?.product, dispatch]);
-
-  console.log(products);
-
   if (productsData.loading) {
     return (
       <ProductPageContainer>

@@ -18,10 +18,8 @@ const Filter = ({
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-
+      <PriceRange setSelectedCategory={setSelectedCategory} />
       <DateRange />
-
-      <PriceRange />
     </FilterContainer>
   );
 };
