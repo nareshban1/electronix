@@ -8,6 +8,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { setProduct } from "../../store/modules/Products/setProducts";
 import { ProductData } from "../ProductCard/ProductCard";
+import { Button, ButtonsContainer } from "./PriceRange.css";
+
+export interface StyleType {
+  background?: string;
+  color?: string;
+}
 
 const PriceRange = ({
   setSelectedCategory,
@@ -17,11 +23,14 @@ const PriceRange = ({
   const apiproducts = useSelector(
     (state: RootState) => state.productsData.apiProducts
   );
+
   const dispatch = useDispatch();
+
   const initialValues: { min: number; max: number } = {
     min: 0,
     max: 0,
   };
+
   const validationSchema = Yup.object({
     min: Yup.number()
       .min(10, "min price must be greater than 10")
@@ -30,6 +39,7 @@ const PriceRange = ({
       .moreThan(Yup.ref("min"), "Max must be greater than min price")
       .required("Required"),
   });
+
   const onSubmit = (values: any) => {
     setSelectedCategory("");
     let tempData = apiproducts.data?.product.filter(
@@ -48,6 +58,16 @@ const PriceRange = ({
     setSelectedCategory("");
     dispatch(setProduct(apiproducts.data?.product));
     resetForm();
+  };
+
+  const clearStyles: StyleType = {
+    background: "gray",
+    color: "black",
+  };
+
+  const filterStyles: StyleType = {
+    background: "#f95700ff",
+    color: "white",
   };
 
   return (
@@ -72,10 +92,18 @@ const PriceRange = ({
               label="Max"
               name="max"
             />
-            <button type="submit">Submit</button>
-            <button type="button" onClick={() => clear(formik.resetForm)}>
-              Clear
-            </button>
+            <ButtonsContainer>
+              <Button type="submit" {...filterStyles}>
+                Filter
+              </Button>
+              <Button
+                type="button"
+                {...clearStyles}
+                onClick={() => clear(formik.resetForm)}
+              >
+                Clear
+              </Button>
+            </ButtonsContainer>
           </Form>
         )}
       </Formik>
