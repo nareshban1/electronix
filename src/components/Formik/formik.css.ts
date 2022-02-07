@@ -13,6 +13,7 @@ export const Error = styled.div`
 
 export const InputField = styled(Field)`
   width: 100%;
+  height: 40px;
 `;
 
 export const DateViewer = styled(DateView)`

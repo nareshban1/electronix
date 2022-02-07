@@ -9,7 +9,7 @@ const Input = (props: any) => {
   return (
     <InputContainer>
       <InputLabel htmlFor={name}>{label}</InputLabel>
-      <InputField id={name} name={name} {...rest} />
+      <InputField id={name} name={name} {...rest} autoComplete="off" />
       <ErrorMessage name={name} component={TextError} />
     </InputContainer>
   );
