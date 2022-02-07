@@ -10,7 +10,7 @@ const DatePicker = (props: any) => {
   return (
     <div>
       <InputLabel>{label}</InputLabel>
-      <InputField name={name}>
+      <InputField name={name} autoComplete="off">
         {({ form, field }: { form: any; field: any }) => {
           const { setFieldValue } = form;
           const { value } = field;
@@ -20,6 +20,7 @@ const DatePicker = (props: any) => {
               {...rest}
               id={name}
               selected={value}
+              autoComplete="off"
               onChange={(val: Date) => setFieldValue(name, val)}
             />
           );

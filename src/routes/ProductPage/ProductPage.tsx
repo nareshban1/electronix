@@ -18,6 +18,7 @@ import {
 } from "./ProductPage.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setProduct } from "../../store/modules/Products/setProducts";
+import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
 const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -44,6 +45,10 @@ const ProductPage = (props: PropsFromRedux) => {
   useEffect(() => {
     getProducts();
   }, [getProducts]);
+
+  useEffect(() => {
+    dispatch(hideCart());
+  }, [dispatch]);
 
   if (productsData.loading) {
     return (

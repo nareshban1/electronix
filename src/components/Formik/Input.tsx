@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorMessage, Field } from "formik";
+import { ErrorMessage } from "formik";
 import { InputLabel } from "../PriceRange/PriceRange.css";
 import { InputContainer, InputField } from "./formik.css";
 import TextError from "./TextError";

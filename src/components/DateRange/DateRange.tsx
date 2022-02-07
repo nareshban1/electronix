@@ -75,6 +75,8 @@ const DateRange = ({
     background: "#f95700ff",
     color: "white",
   };
+
+  const today = new Date();
   return (
     <PriceFilterContainer>
       <FilterHeader>Release Date Range</FilterHeader>
@@ -87,7 +89,12 @@ const DateRange = ({
           <Form>
             <PriceInputGroup>
               <FormikControl control="date" label="From" name="from" />
-              <FormikControl control="date" label="To" name="to" />
+              <FormikControl
+                control="date"
+                label="To"
+                name="to"
+                maxDate={today}
+              />
             </PriceInputGroup>
             <ButtonsContainer>
               <Button type="submit" {...filterStyles}>
