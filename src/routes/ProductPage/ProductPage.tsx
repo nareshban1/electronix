@@ -8,6 +8,7 @@ import Filter from "../../container/Filter/Filter";
 import ProductGrid from "../../container/ProductGrid/ProductGrid";
 import { RootState } from "../../store";
 import { fetchProducts } from "../../store/modules/Products/getProducts";
+
 import {
   LoadingContainer,
   ProductFilterContainer,
@@ -15,34 +16,42 @@ import {
   ProductPageHeader,
   ProductPageHeaderContainer,
 } from "./ProductPage.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setProduct } from "../../store/modules/Products/setProducts";
 const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [products, setProducts] = useState([]);
-  const [min, setMin] = useState<number>(0);
-  const [max, setMax] = useState<number>(0);
+
+  const products = useSelector(
+    (state: RootState) => state.productsData.products
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (selectedCategory !== "") {
-      let filteredData = productsData.data?.product.filter(
-        (product: ProductData) =>
-          product.category.indexOf(selectedCategory) > -1
-      );
-
-      setProducts(filteredData);
-    } else {
-      setProducts(productsData.data?.product);
+    if (productsData.data?.product) {
+      if (selectedCategory !== "") {
+        let filteredData = productsData.data?.product.filter(
+          (product: ProductData) =>
+            product.category.indexOf(selectedCategory) > -1
+        );
+        dispatch(setProduct(filteredData));
+      } else {
+        dispatch(setProduct(productsData.data?.product));
+      }
     }
-  }, [selectedCategory, productsData]);
+  }, [productsData.data?.product, dispatch, selectedCategory]);
 
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
-  useEffect(() => {
-    setProducts(productsData.data?.product);
-  }, [productsData]);
+  // useEffect(() => {
+  //   if (productsData.data?.product) {
+  //     dispatch(setProduct(productsData.data?.product));
+  //   }
+  // }, [productsData.data?.product, dispatch]);
+
+  console.log(products);
 
   if (productsData.loading) {
     return (
@@ -57,11 +66,7 @@ const ProductPage = (props: PropsFromRedux) => {
   } else if (productsData.error) {
     return (
       <ProductPageContainer>
-        <Container>
-          <LoadingContainer>
-            <LoadingSpinner />
-          </LoadingContainer>
-        </Container>
+        <Container>{productsData.message}</Container>
       </ProductPageContainer>
     );
   }
@@ -76,7 +81,7 @@ const ProductPage = (props: PropsFromRedux) => {
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
           />
-          <ProductGrid products={products} />
+          {products.length !== 0 && <ProductGrid products={products} />}
         </ProductFilterContainer>
       </Container>
       <Cart />
@@ -85,7 +90,7 @@ const ProductPage = (props: PropsFromRedux) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  productsData: state.productsData,
+  productsData: state.productsData.apiProducts,
 });
 
 const mapDispatchToProps = {

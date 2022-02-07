@@ -1,7 +1,8 @@
 import React from "react";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import DateRange from "../../components/DateRange/DateRange";
-import { FilterContainer, FilterHeader } from "./Filter.css";
+import PriceRange from "../../components/PriceRange/PriceRange";
+import { FilterContainer } from "./Filter.css";
 
 const Filter = ({
   selectedCategory,
@@ -18,9 +19,9 @@ const Filter = ({
         setSelectedCategory={setSelectedCategory}
       />
 
-      <FilterHeader>Price Range</FilterHeader>
-
       <DateRange />
+
+      <PriceRange />
     </FilterContainer>
   );
 };

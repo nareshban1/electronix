@@ -20,7 +20,7 @@ const CategoryFilter = ({
     "mobile",
     "watch",
     "keyboard",
-    "headset",
+    "headseat",
   ];
   return (
     <>

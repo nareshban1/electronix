@@ -24,7 +24,7 @@ export enum RequestMethod {
 
 export interface apiDetailType {
   actionName: string;
-  controllerName: string;
+  controllerName?: string;
   requestMethod?: RequestMethod;
   requestBodyType?: string;
 }
@@ -37,6 +37,9 @@ const apiDetails = {
       controllerName: "/product",
       actionName: "GET_PRODUCTS",
       requestMethod: RequestMethod.GET,
+    },
+    setProducts: {
+      actionName: "SET_PRODUCTS",
     },
   },
 };
