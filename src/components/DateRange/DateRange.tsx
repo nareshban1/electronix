@@ -1,26 +1,21 @@
 import React from "react";
-import { Formik, Form, FormikValues, FormikProps, FormikState } from "formik";
-import * as Yup from "yup";
-import { FilterHeader } from "../../container/Filter/Filter.css";
-import FormikControl from "../Formik/FormikControl";
-
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
+import { FilterHeader } from "../../container/Filter/Filter.css";
 import { setProduct } from "../../store/modules/Products/setProducts";
 import { ProductData } from "../ProductCard/ProductCard";
+import { Formik, Form, FormikValues, FormikProps, FormikState } from "formik";
+import * as Yup from "yup";
+import FormikControl from "../Formik/FormikControl";
+import { StyleType } from "../PriceRange/PriceRange";
 import {
   Button,
   ButtonsContainer,
-  PriceFilterContainer,
   PriceInputGroup,
-} from "./PriceRange.css";
+  PriceFilterContainer,
+} from "../PriceRange/PriceRange.css";
 
-export interface StyleType {
-  background?: string;
-  color?: string;
-}
-
-const PriceRange = ({
+const DateRange = ({
   setSelectedCategory,
 }: {
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -31,27 +26,29 @@ const PriceRange = ({
 
   const dispatch = useDispatch();
 
-  const initialValues: { min: number; max: number } = {
-    min: 0,
-    max: 0,
+  const initialValues: {
+    from: Date | string | null;
+    to: Date | string | null;
+  } = {
+    from: "",
+    to: "",
   };
 
   const validationSchema = Yup.object({
-    min: Yup.number()
-      .min(10, "min price must be greater than 10")
-      .required("Required"),
-    max: Yup.number()
-      .moreThan(Yup.ref("min"), "Max must be greater than min price")
+    from: Yup.date().nullable().required("Required"),
+    to: Yup.date()
+      .nullable()
+      .when(
+        "from",
+        (from, yup) =>
+          from && yup.min(from, "End date cannot be before start date")
+      )
       .required("Required"),
   });
 
   const onSubmit = (values: any) => {
     setSelectedCategory("");
-    let tempData = apiproducts.data?.product.filter(
-      (product: ProductData) =>
-        Number(product.price.substring(1)) >= values.min &&
-        Number(product.price.substring(1)) <= values.max
-    );
+    let tempData = apiproducts.data?.product;
     dispatch(setProduct(tempData));
   };
 
@@ -74,10 +71,9 @@ const PriceRange = ({
     background: "#f95700ff",
     color: "white",
   };
-
   return (
     <PriceFilterContainer>
-      <FilterHeader>Price Range</FilterHeader>
+      <FilterHeader>Release Date Range</FilterHeader>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -86,18 +82,8 @@ const PriceRange = ({
         {(formik: FormikProps<FormikValues>) => (
           <Form>
             <PriceInputGroup>
-              <FormikControl
-                control="input"
-                type="number"
-                label="Min"
-                name="min"
-              />
-              <FormikControl
-                control="input"
-                type="number"
-                label="Max"
-                name="max"
-              />
+              <FormikControl control="date" label="From" name="from" />
+              <FormikControl control="date" label="To" name="to" />
             </PriceInputGroup>
             <ButtonsContainer>
               <Button type="submit" {...filterStyles}>
@@ -118,4 +104,4 @@ const PriceRange = ({
   );
 };
 
-export default PriceRange;
+export default DateRange;

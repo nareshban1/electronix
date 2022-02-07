@@ -19,7 +19,7 @@ const Filter = ({
         setSelectedCategory={setSelectedCategory}
       />
       <PriceRange setSelectedCategory={setSelectedCategory} />
-      <DateRange />
+      <DateRange setSelectedCategory={setSelectedCategory} />
     </FilterContainer>
   );
 };

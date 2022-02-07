@@ -1,15 +1,17 @@
-import { ErrorMessage, Field } from "formik";
 import React from "react";
+import { ErrorMessage, Field } from "formik";
+import { InputLabel } from "../PriceRange/PriceRange.css";
+import { InputContainer, InputField } from "./formik.css";
 import TextError from "./TextError";
 
 const Input = (props: any) => {
   const { label, name, ...rest } = props;
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <Field id={name} name={name} {...rest} />
+    <InputContainer>
+      <InputLabel htmlFor={name}>{label}</InputLabel>
+      <InputField id={name} name={name} {...rest} />
       <ErrorMessage name={name} component={TextError} />
-    </div>
+    </InputContainer>
   );
 };
 
