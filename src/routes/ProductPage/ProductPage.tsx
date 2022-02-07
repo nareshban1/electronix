@@ -20,6 +20,8 @@ const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [products, setProducts] = useState([]);
+  const [min, setMin] = useState<number>(0);
+  const [max, setMax] = useState<number>(0);
 
   useEffect(() => {
     if (selectedCategory !== "") {
