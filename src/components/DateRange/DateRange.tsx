@@ -48,7 +48,11 @@ const DateRange = ({
 
   const onSubmit = (values: any) => {
     setSelectedCategory("");
-    let tempData = apiproducts.data?.product;
+    let tempData = apiproducts.data?.product.filter(
+      (product: ProductData) =>
+        Number(product.createDate) >= values.from.getTime() &&
+        Number(product.createDate) <= values.to.getTime()
+    );
     dispatch(setProduct(tempData));
   };
 
