@@ -51,4 +51,39 @@ export const CheckoutButton = styled.button`
 
 export const Cart = styled.div`
   width: 400px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
+
+export const CartItems = styled.div`
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1;
+  grid-template-rows: repeat(auto-fill, minmax(100px, 120px));
+  overflow: auto;
+  justify-self: flex-start;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #f95700ff;
+  }
+`;
+
+export const TotalAmt = styled.p`
+  font-weight: 600;
+  align-self: flex-end;
 `;

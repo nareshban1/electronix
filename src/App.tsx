@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CheckoutPage from "./routes/CheckoutPage/CheckoutPage";
 import ProductPage from "./routes/ProductPage/ProductPage";
 import GlobalStyles from "./assets/styles/globalStyles.css";
@@ -19,7 +19,7 @@ function App() {
         {cart.length !== 0 && (
           <Route path="/checkout" element={<CheckoutPage />} />
         )}
-        <Route path="*" element={<ProductPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppContainer>
   );

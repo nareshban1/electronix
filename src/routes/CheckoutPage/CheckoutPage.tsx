@@ -11,14 +11,16 @@ import {
   FormGroupHeader,
   FormikForm,
   Forms,
+  CartItems,
+  TotalAmt,
 } from "./CheckoutPage.css";
-import { Formik, Form, FormikValues, FormikProps } from "formik";
+import { FormikValues, FormikProps } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../components/Formik/FormikControl";
 import { RootState } from "../../store";
 import { useSelector } from "react-redux";
-import { CartItems } from "../../container/Cart/Cart.css";
 import CartProductCard from "../../components/CartProductCard/CartProductCard";
+import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 
 type InitialValues = {
   BfirstName: string;
@@ -28,6 +30,7 @@ type InitialValues = {
   Baddress2: string;
   Bemail: string;
   BphoneNo: string;
+  currentDate: string | Date;
   SfirstName: string;
   SlastName: string;
   SmiddleName: string;
@@ -36,6 +39,9 @@ type InitialValues = {
   SphoneNo: string;
   Semail: string;
 };
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -48,6 +54,7 @@ const CheckoutPage = () => {
     Baddress2: "",
     Bemail: "",
     BphoneNo: "",
+    currentDate: "",
     SfirstName: "",
     SlastName: "",
     SmiddleName: "",
@@ -68,6 +75,8 @@ const CheckoutPage = () => {
       .matches(phoneRegExp, "Phone number is not valid")
       .min(10, "to short")
       .max(10, "to long"),
+    currentDate: Yup.date().nullable().min(today, "Date cannot be in the past"),
+
     SfirstName: Yup.string().required("Firs tName Required"),
     SlastName: Yup.string().required("Last Name Required"),
     Saddress1: Yup.string().required("Enter Your Shipping Address"),
@@ -82,6 +91,13 @@ const CheckoutPage = () => {
   });
   const onSubmit = (values: any) => {};
   const cart = useSelector((state: RootState) => state.cart);
+  const totalAmount = formatCurrency(
+    cart
+      .map((item) => Number(item.price.substring(1)) * item.quantity)
+      .reduce((acc, current) => {
+        return acc + current;
+      }, 0)
+  );
   return (
     <CheckoutPageContainer>
       <Container>
@@ -142,6 +158,12 @@ const CheckoutPage = () => {
                       type="text"
                       label="Email"
                       name="Bemail"
+                    />
+                    <FormikControl
+                      control="date"
+                      label="Billing Date"
+                      name="currentDate"
+                      maxDate={today}
                     />
                   </CheckoutFormGrid>
                 </FormGroupContainer>
@@ -207,6 +229,7 @@ const CheckoutPage = () => {
                 <CartProductCard key={product.id} product={product} />
               ))}
             </CartItems>
+            <TotalAmt>Total Price : {totalAmount}</TotalAmt>
           </Cart>
         </CheckoutFlex>
       </Container>
