@@ -1,5 +1,4 @@
 import React from "react";
-import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 import formatDate from "../../utils/utilsFunctions/dateFormatter";
 import {
   CardContainer,

@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
 import CartProductCard from "../../components/CartProductCard/CartProductCard";
-import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 import { Link } from "react-router-dom";
 import { getCommaSeperateNumber } from "../../utils/utilsFunctions/numberConverter";
 

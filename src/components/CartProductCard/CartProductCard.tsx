@@ -5,7 +5,6 @@ import {
   increaseQuantity,
   removeFromCart,
 } from "../../store/modules/Cart/cartActions";
-import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 import {
   CartProductCardContainer,
   CartProductDetailContainer,

@@ -58,7 +58,9 @@ export const getCommaSeperateNumber = (_number: number | string) => {
   return num < 0 ? `-${res}` : res;
 };
 
-export const getNumberfromCommaSeperated = (commaSeperatedNumber: string | number) => {
+export const getNumberfromCommaSeperated = (
+  commaSeperatedNumber: string | number
+) => {
   if (typeof commaSeperatedNumber === "number") {
     return commaSeperatedNumber;
   }
@@ -72,6 +74,7 @@ export const getNumberfromCommaSeperated = (commaSeperatedNumber: string | numbe
       number_.push(value);
       return value;
     }
+    return value;
   });
   return Number(number_.join(""));
 };
