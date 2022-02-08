@@ -7,6 +7,10 @@ export const CheckoutFlex = styled.div`
   display: flex;
   width: 100%;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const FormikForm = styled(Formik)`
@@ -55,6 +59,9 @@ export const Cart = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const CartItems = styled.div`
