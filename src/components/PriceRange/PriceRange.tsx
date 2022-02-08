@@ -47,7 +47,6 @@ const PriceRange = ({
 
   const onSubmit = (values: any) => {
     setSelectedCategory("");
-
     let tempData = apiproducts.data?.product.filter(
       (product: ProductData) =>
         Number(product.price.substring(1)) >= values.min &&

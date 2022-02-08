@@ -18,6 +18,7 @@ import {
   Minus,
   Plus,
 } from "./CartProductCart.css";
+import { useLocation } from "react-router-dom";
 
 type ProductData = {
   id: number;
@@ -50,6 +51,9 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
     }
   };
 
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <CartProductCardContainer>
       <DetailContainer>
@@ -64,17 +68,25 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
             )}
           </CartProductPrice>
           <CartProductQuantity>
-            <Plus
-              onClick={() =>
-                increase(product.id, product.quantity, product.stock)
-              }
-            />
-            {product.quantity}
-            <Minus onClick={() => decrease(product.id, product.quantity)} />
+            {location.pathname !== "/checkout" ? (
+              <>
+                <Plus
+                  onClick={() =>
+                    increase(product.id, product.quantity, product.stock)
+                  }
+                />
+                {product.quantity}
+                <Minus onClick={() => decrease(product.id, product.quantity)} />
+              </>
+            ) : (
+              <>Qty:{product.quantity}</>
+            )}
           </CartProductQuantity>
         </CartProductDetailContainer>
       </DetailContainer>
-      <DeleteProduct onClick={() => deleteItem(product.id)} />
+      {location.pathname !== "/checkout" && (
+        <DeleteProduct onClick={() => deleteItem(product.id)} />
+      )}
     </CartProductCardContainer>
   );
 };
