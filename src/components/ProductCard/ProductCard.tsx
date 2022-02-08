@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { addToCart } from "../../store/modules/Cart/cartActions";
 import { showCart } from "../../store/modules/ToggleCart/toggleActions";
+import { getCommaSeperateNumber } from "../../utils/utilsFunctions/numberConverter";
 export type ProductData = {
   id: number;
   name: string;
@@ -30,8 +31,7 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   var createDate = formatDate(productData.createDate);
-  var price = formatCurrency(productData.price.substring(1));
-
+  var price = getCommaSeperateNumber(productData.price.substring(1));
   const addProduct = (product: ProductData) => {
     if (cart.filter((object) => object.id === product.id).length === 0) {
       dispatch(addToCart({ ...product, quantity: 1 }));
@@ -45,7 +45,7 @@ const ProductCard = ({ productData }: { productData: ProductData }) => {
       />
       <ProductDetails>
         <ProductName>{productData.name}</ProductName>
-        <ProductPrice>{price}</ProductPrice>
+        <ProductPrice>Rs. {price}</ProductPrice>
         <Stock>{productData.stock} in Stock</Stock>
         <CreateDate>{createDate}</CreateDate>
         <CartButton

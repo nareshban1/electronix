@@ -19,6 +19,7 @@ import {
   Plus,
 } from "./CartProductCart.css";
 import { useLocation } from "react-router-dom";
+import { getCommaSeperateNumber } from "../../utils/utilsFunctions/numberConverter";
 
 type ProductData = {
   id: number;
@@ -63,7 +64,8 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
         <CartProductDetailContainer>
           <CartProductName>{product.name}</CartProductName>
           <CartProductPrice>
-            {formatCurrency(
+            Rs.
+            {getCommaSeperateNumber(
               Number(product.price.substring(1)) * product.quantity
             )}
           </CartProductPrice>

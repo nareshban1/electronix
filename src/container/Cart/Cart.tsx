@@ -15,6 +15,7 @@ import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
 import CartProductCard from "../../components/CartProductCard/CartProductCard";
 import formatCurrency from "../../utils/utilsFunctions/currencyFormatter";
 import { Link } from "react-router-dom";
+import { getCommaSeperateNumber } from "../../utils/utilsFunctions/numberConverter";
 
 const Cart = () => {
   const viewCart = useSelector((state: RootState) => state.toggleCart.viewCart);
@@ -25,7 +26,7 @@ const Cart = () => {
     dispatch(hideCart());
   };
 
-  const totalAmount = formatCurrency(
+  const totalAmount = getCommaSeperateNumber(
     cart
       .map((item) => Number(item.price.substring(1)) * item.quantity)
       .reduce((acc, current) => {
@@ -48,7 +49,7 @@ const Cart = () => {
               ))}
             </CartItems>
             <CartFooter>
-              <TotalPrice> Total Amount: &nbsp; {totalAmount}</TotalPrice>
+              <TotalPrice> Total Amount: &nbsp; Rs. {totalAmount}</TotalPrice>
               <Link to={"/checkout"}>
                 <CheckoutButton disabled={cart.length === 0}>
                   Checkout
