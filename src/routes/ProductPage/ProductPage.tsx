@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Container } from "../../assets/styles/commonStyles.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { ProductData } from "../../components/ProductCard/ProductCard";
 import Cart from "../../container/Cart/Cart";
 import Filter from "../../container/Filter/Filter";
 import ProductGrid from "../../container/ProductGrid/ProductGrid";

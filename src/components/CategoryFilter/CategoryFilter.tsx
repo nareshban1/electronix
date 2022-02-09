@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FilterHeader } from "../../container/Filter/Filter.css";
 import {
   CategoriesContainer,
@@ -28,9 +28,7 @@ const CategoryFilter = ({
   const apiproducts = useSelector(
     (state: RootState) => state.productsData.apiProducts
   );
-  const products = useSelector(
-    (state: RootState) => state.productsData.products
-  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
