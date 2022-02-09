@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import DateRange from "../../components/DateRange/DateRange";
 import PriceRange from "../../components/PriceRange/PriceRange";
 import { FilterContainer } from "./Filter.css";
 
-const Filter = ({
-  selectedCategory,
-  setSelectedCategory,
-}: {
-  selectedCategory: string;
+const Filter = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
-}) => {
   return (
     <FilterContainer>
       <CategoryFilter

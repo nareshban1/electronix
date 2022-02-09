@@ -21,26 +21,11 @@ import { setProduct } from "../../store/modules/Products/setProducts";
 import { hideCart } from "../../store/modules/ToggleCart/toggleActions";
 const ProductPage = (props: PropsFromRedux) => {
   const { productsData, getProducts } = props;
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const products = useSelector(
     (state: RootState) => state.productsData.products
   );
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (productsData.data?.product) {
-      if (selectedCategory !== "") {
-        let filteredData = productsData.data?.product.filter(
-          (product: ProductData) =>
-            product.category.indexOf(selectedCategory) > -1
-        );
-        dispatch(setProduct(filteredData));
-      } else {
-        dispatch(setProduct(productsData.data?.product));
-      }
-    }
-  }, [productsData.data?.product, dispatch, selectedCategory]);
 
   useEffect(() => {
     if (productsData.data?.product) {
@@ -80,10 +65,7 @@ const ProductPage = (props: PropsFromRedux) => {
           <ProductPageHeader>Our Products</ProductPageHeader>
         </ProductPageHeaderContainer>
         <ProductFilterContainer>
-          <Filter
-            setSelectedCategory={setSelectedCategory}
-            selectedCategory={selectedCategory}
-          />
+          <Filter />
           {products.length !== 0 && <ProductGrid products={products} />}
         </ProductFilterContainer>
       </Container>

@@ -45,14 +45,16 @@ const CartProductCard = ({ product }: { product: ProductData }) => {
     }
   };
   const decrease = (productId: number, quantity: number) => {
-    console.log(quantity);
-    if (quantity > 1) {
-      dispatch(decreaseQuantity(productId));
+    if (quantity >= 1) {
+      if (quantity > 1) {
+        dispatch(decreaseQuantity(productId));
+      } else {
+        dispatch(removeFromCart(productId));
+      }
     }
   };
 
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <CartProductCardContainer>

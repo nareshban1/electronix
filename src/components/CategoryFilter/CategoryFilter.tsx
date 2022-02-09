@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FilterHeader } from "../../container/Filter/Filter.css";
 import {
   CategoriesContainer,
@@ -6,7 +6,10 @@ import {
   SubCategories,
   Clear,
 } from "./CategoryFilter.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import { setProduct } from "../../store/modules/Products/setProducts";
+import { ProductData } from "../ProductCard/ProductCard";
 const CategoryFilter = ({
   selectedCategory,
   setSelectedCategory,
@@ -22,6 +25,28 @@ const CategoryFilter = ({
     "keyboard",
     "headseat",
   ];
+  const apiproducts = useSelector(
+    (state: RootState) => state.productsData.apiProducts
+  );
+  const products = useSelector(
+    (state: RootState) => state.productsData.products
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (apiproducts.data?.product) {
+      if (selectedCategory !== "") {
+        let filteredData = apiproducts.data?.product.filter(
+          (product: ProductData) =>
+            product.category.indexOf(selectedCategory) > -1
+        );
+        dispatch(setProduct(filteredData));
+      } else {
+        dispatch(setProduct(apiproducts.data?.product));
+      }
+    }
+  }, [apiproducts.data?.product, dispatch, selectedCategory]);
+
   return (
     <>
       <FilterHeader>

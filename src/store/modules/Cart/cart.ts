@@ -22,6 +22,18 @@ const initialState: CartState = [];
 const cartReducer = (state = initialState, action: DefaultAction) => {
   switch (action.type) {
     case ADD_TO_CART:
+      if (
+        state.filter((object) => object.id === action.payload.id).length !== 0
+      ) {
+        let indexInc = state.findIndex((obj) => obj.id === action.payload.id);
+        let productToInc = [...state];
+        let incItem = { ...productToInc[indexInc] };
+        if (incItem.stock > incItem.quantity) {
+          incItem = { ...incItem, quantity: incItem.quantity + 1 };
+        }
+        productToInc[indexInc] = incItem;
+        return [...productToInc];
+      }
       return [...state, action.payload];
 
     case REMOVE_FROM_CART:
