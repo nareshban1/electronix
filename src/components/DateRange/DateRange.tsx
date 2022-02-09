@@ -16,14 +16,19 @@ import {
 } from "../PriceRange/PriceRange.css";
 
 const DateRange = ({
+  selectedCategory,
   setSelectedCategory,
 }: {
+  selectedCategory: string;
+
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const apiproducts = useSelector(
     (state: RootState) => state.productsData.apiProducts
   );
-
+  const products = useSelector(
+    (state: RootState) => state.productsData.products
+  );
   const dispatch = useDispatch();
 
   const initialValues: {
@@ -48,7 +53,7 @@ const DateRange = ({
 
   const onSubmit = (values: any) => {
     setSelectedCategory("");
-    let tempData = apiproducts.data?.product.filter(
+    let tempData = products.filter(
       (product: ProductData) =>
         Number(product.createDate) >= values.from.getTime() &&
         Number(product.createDate) <= values.to.getTime()
@@ -61,7 +66,6 @@ const DateRange = ({
       nextState?: Partial<FormikState<FormikValues>> | undefined
     ) => void
   ) => {
-    setSelectedCategory("");
     dispatch(setProduct(apiproducts.data?.product));
     resetForm();
   };

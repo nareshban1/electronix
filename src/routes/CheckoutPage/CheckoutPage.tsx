@@ -75,7 +75,10 @@ const CheckoutPage = () => {
       .matches(phoneRegExp, "Phone number is not valid")
       .min(10, "to short")
       .max(10, "to long"),
-    currentDate: Yup.date().nullable().min(today, "Date cannot be in the past"),
+    currentDate: Yup.date()
+      .nullable()
+      .min(today, "Date cannot be in the past")
+      .required("Billing Date Required"),
 
     SfirstName: Yup.string().required("Firs tName Required"),
     SlastName: Yup.string().required("Last Name Required"),

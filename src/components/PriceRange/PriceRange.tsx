@@ -21,12 +21,18 @@ export interface StyleType {
 }
 
 const PriceRange = ({
+  selectedCategory,
   setSelectedCategory,
 }: {
+  selectedCategory: string;
+
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const apiproducts = useSelector(
     (state: RootState) => state.productsData.apiProducts
+  );
+  const products = useSelector(
+    (state: RootState) => state.productsData.products
   );
 
   const dispatch = useDispatch();
@@ -46,12 +52,12 @@ const PriceRange = ({
   });
 
   const onSubmit = (values: any) => {
-    setSelectedCategory("");
-    let tempData = apiproducts.data?.product.filter(
+    let tempData = products.filter(
       (product: ProductData) =>
         Number(product.price.substring(1)) >= values.min &&
         Number(product.price.substring(1)) <= values.max
     );
+
     dispatch(setProduct(tempData));
   };
 
@@ -60,9 +66,16 @@ const PriceRange = ({
       nextState?: Partial<FormikState<FormikValues>> | undefined
     ) => void
   ) => {
-    setSelectedCategory("");
-    dispatch(setProduct(apiproducts.data?.product));
     resetForm();
+    if (selectedCategory !== "") {
+      let filteredData = apiproducts.data?.product.filter(
+        (product: ProductData) =>
+          product.category.indexOf(selectedCategory) > -1
+      );
+      dispatch(setProduct(filteredData));
+    } else {
+      dispatch(setProduct(apiproducts.data?.product));
+    }
   };
 
   const clearStyles: StyleType = {

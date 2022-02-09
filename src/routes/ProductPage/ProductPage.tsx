@@ -43,6 +43,12 @@ const ProductPage = (props: PropsFromRedux) => {
   }, [productsData.data?.product, dispatch, selectedCategory]);
 
   useEffect(() => {
+    if (productsData.data?.product) {
+      dispatch(setProduct(productsData.data?.product));
+    }
+  }, [productsData.data?.product, dispatch]);
+
+  useEffect(() => {
     getProducts();
   }, [getProducts]);
 
